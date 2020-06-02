@@ -1,0 +1,10 @@
+[{"name":"Fuji Apples","category":3,"creation_date":"04/19/2020","price":"$3.39"},
+{"name":"Marzipan 50/50","category":2,"creation_date":"01/01/2020","price":"$6.64"},
+{"name":"Pepsi, 355 Ml","category":3,"creation_date":"03/06/2020","price":"$3.36"},
+{"name":"Pastry - Plain Baked Croissant","category":2,"creation_date":"11/06/2019","price":"$1.66"},
+{"name":"Coffee - Espresso","category":3,"creation_date":"05/12/2020","price":"$3.14"},
+{"name":"Chicken - Livers","category":3,"creation_date":"09/19/2019","price":"$9.64"},
+{"name":"Garlic - Peeled","category":3,"creation_date":"07/15/2019","price":"$2.29"},
+{"name":"Rambutan","category":1,"creation_date":"12/23/2019","price":"$1.79"},
+{"name":"Beer - Alexander Kieths, Pale Ale","category":3,"creation_date":"03/16/2020","price":"$6.16"},
+{"name":"Longos - Lasagna Veg","category":2,"creation_date":"04/05/2020","price":"$7.84"}]
