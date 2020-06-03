@@ -11,6 +11,7 @@ rope = "*"
 [packages]
 flask = "*"
 flask-mongoengine = "*"
+flask-restful = "*"
 
 [requires]
 python_version = "3.8"
