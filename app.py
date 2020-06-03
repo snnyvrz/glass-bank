@@ -1,44 +1,48 @@
-import json
+from flask import Flask, request, Response
 
-from flask import Flask, jsonify, request
+from database.db import initialize_db
+from database.models import Product
+
 
 app = Flask(__name__)
 
-# loading mock data
-with open('./MOCK_DATA.json') as json_file:
-    products = json.load(json_file)
+app.config['MONGODB_SETTINGS'] = {
+    'host': 'mongodb://localhost/glass-bank'
+}
+
+initialize_db(app)
 
 
 @app.route("/products")
 def get_products():
-    return jsonify(products)
+    products = Product.objects().to_json()
+    return Response(products, mimetype="application/json", status=200)
 
 
 @app.route("/products", methods=['POST'])
 def add_product():
-    product = request.get_json()
-    products.append(product)
-    return {'id': len(products)}, 200
+    body = request.get_json()
+    product = Product(**body).save()
+    return {'id': str(product.id)}, 200
 
 
-@app.route("/products/<int:id>", methods=['GET'])
+@app.route("/products/<id>")
 def get_product(id):
-    return jsonify(products[id - 1]), 200
+    product = Product.objects.get(id=id).to_json()
+    return Response(product, mimetype="application/json", status=200)
 
 
-@app.route("/products/<int:id>", methods=['PUT'])
+@app.route("/products/<id>", methods=['PUT'])
 def update_product(id):
-    product = request.get_json()
-    index = id - 1
-    products[index] = product
-    return jsonify(products[index]), 200
+    body = request.get_json()
+    Product.objects.get(id=id).update(**body)
+    return '', 200
 
 
-@app.route("/products/<int:id>", methods=['DELETE'])
-def deleye_product(id):
-    index = id - 1
-    del products[index]
-    return 'None', 200
+@app.route("/products/<id>", methods=['DELETE'])
+def delete_product(id):
+    Product.objects.get(id=id).delete()
+    return '', 200
 
 
 app.run()
